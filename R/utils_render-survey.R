@@ -118,7 +118,7 @@ getRequired_internal <- function(questions) {
 	if(nrow(out)>0){
 		names(out) <- "required_id"
 		out <- out$required_id
-		return out
+		return(out)
 	}
 
   return(as.list(out))
