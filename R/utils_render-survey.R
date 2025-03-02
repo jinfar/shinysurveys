@@ -107,18 +107,21 @@ getID <- function(df) {
 #'
 getRequired_internal <- function(questions) {
 
-	temp  <-do.call(
+  out <- as.data.frame(
+    do.call(
       rbind,
       lapply(questions, getID)
-    )
-	if(is.null(temp)){
-		return NULL
-	}
-	out <- as.data.frame(temp, stringsAsFactors = FALSE)
-	names(out) <- "required_id"
+    ),
+    stringsAsFactors = FALSE
+  )
 
-	out <- out$required_id
-  return(out)
+	if(nrow(out)>0){
+		names(out) <- "required_id"
+		out <- out$required_id
+		return out
+	}
+
+  return(as.list(out))
 
 }
 
